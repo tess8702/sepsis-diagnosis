@@ -1,0 +1,240 @@
+/* Main CSS file */
+body {
+  color: #111;
+  font-size: 1em;
+  line-height: 1.5;
+  background-color: #fafafa;
+}
+
+h2 {
+  color: #024453;
+}
+
+h3 {
+  color: #024453;
+}
+
+p {
+  font-size: 10pt;
+}
+
+.innerlink {
+  font-size: 14px;
+  color: #1d83af
+}
+
+/* Main column widths */
+.column {
+  float: left;
+  padding: 10px;
+}
+
+.left {
+  width: 20%;
+}
+
+.middle {
+  width: 80%;
+}
+
+.step-circle {
+  width: 50px;
+  line-height: 50px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 32px;
+  border: 2px solid #666;
+  background: #fff;
+  border: 2px solid #666;
+  color: #666;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 25px;
+}
+
+.threshold-value {
+  font-size: 8pt;
+  margin-bottom: 8px;
+}
+
+/* Slider settings */
+.slider-holder {
+  padding: 10px;
+  margin: 0px;
+}
+
+.slidecontainer {
+  width: 100%;
+  border: 1px solid black;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 75% !important;
+  height: 10px;
+  background: lightgray;
+  border: 1px solid black;
+  border-radius: 5px;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #024453;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #024453;
+  cursor: pointer;
+}
+
+.value {
+  margin: 15px 0px 0px 0px;
+  display: inline-block;
+}
+
+span.ui-slider-handle.ui-state-default.ui-corner-all {
+  transition: all .3s;
+}
+
+span.ui-slider-handle.ui-state-default.ui-corner-all.ui-state-active {
+  transition: none;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.x-axis line {
+  stroke: #f5f5f5;
+}
+
+.x-axis path {
+  stroke: #f5f5f5;
+}
+
+.x-axis text {
+  fill: #f5f5f5;
+}
+
+.y-axis line {
+  stroke: #f5f5f5;
+}
+
+.y-axis path {
+  stroke: #f5f5f5;
+}
+
+.y-axis text {
+  fill: #f5f5f5;
+}
+
+.axis-title text {
+  fill: #f5f5f5;
+}
+
+.sigmoid {
+  stroke-dasharray: 4px 4px;
+  stroke: #aaa;
+  fill: #121212;
+}
+
+/* style for pictogram */
+text {
+  fill: white;
+  text-anchor: left;
+  font-size: 12px;
+  font-family: sans-serif, Helvetica, Arial;
+  font-weight: bold;
+}
+
+.iconPlain {
+  fill: #a7a59b;
+}
+
+.positive {
+  fill: #4191cf;
+  color: #4191cf;
+
+}
+
+.negative {
+  fill: #b13;
+  color: #b13;
+}
+
+.true-positive {
+  fill: #4191cf;
+  color: #4191cf;
+}
+
+.true-negative {
+  fill: #b13;
+  color: #b13;
+}
+
+.false-positive {
+  fill: #b13;
+  color: #b13;
+  stroke: black;
+}
+
+text.false-positive {
+  stroke: none;
+}
+
+.false-negative {
+  fill: #4191cf;
+  color: #4191cf;
+  stroke: black;
+}
+
+text.false-negative {
+  stroke: none;
+}
+
+#iconCustom path {
+  padding-bottom: 2px;
+}
+
+.sample {
+  width: 15px;
+  padding-left: .5em;
+}
+
+.icon-tip {
+  z-index: 2;
+}
+
+#accuracy {
+  font-size: 18pt;
+}
+
+/* Hides things so only screen readers will find them. */
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

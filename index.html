@@ -1,0 +1,167 @@
+<!doctype HTML>
+
+<HTML>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Decision Thresholds</title>
+  <!-- Libraries -->
+
+  <script src="libraries/jquery-3.4.1.min.js"></script>
+  <link href="libraries/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <script src="libraries/bootstrap.min.js"></script>
+  <script src="libraries/d3.v4.min.js"></script>
+  <script src="libraries/d3-format.v1.min.js"></script>
+  <script src="libraries/d3-tip.js"></script>
+
+  <!-- scroller js-->
+  <script src="js/scroller.js"></script>
+
+
+  <!-- your script file -->
+  <script src="js/pictogram.js"></script>
+  <script src="js/seedrandom.js"></script>
+  <script src="js/main.js"></script>
+
+
+  <!-- Custom files -->
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/scroll.css" />
+
+</head>
+
+<body>
+
+  <div class="container-fluid">
+
+    <h2>Decision thresholds: Simulation of sepsis diagnosis</h2>
+
+    <div id='graphic'>
+      <div role="region" id="sections">
+        <!-- step 1: update th sample size -->
+        <section class="step">
+          <div class="row">
+
+            <div class="column left">
+              <div class="step-circle">1</div>
+            </div>
+
+            <div class="column middle">
+              <div class="slider-holder">
+                <h3>Sample Size</h3>
+                <p>In this simulation, 500 patients will have their sepsis status predicted by a computational model. Among the 500 patients, 100 of them (20%) actually have sepsis, and 400 (80%) do not. <strong>Scroll
+                    down</strong> to run the model prediction.</p>
+                <p aria-hidden="true"> Sepsis: <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="male" class="svg-inline--fa fa-male fa-w-6 true-positive sample" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512">
+                  <path stroke="none" fill="currentColor" d="M96 0c35.346 0 64 28.654 64 64s-28.654 64-64 64-64-28.654-64-64S60.654 0 96 0m48 144h-11.36c-22.711 10.443-49.59 10.894-73.28 0H48c-26.51 0-48 21.49-48 48v136c0 13.255 10.745 24 24 24h16v136c0 13.255 10.745 24 24 24h64c13.255 0 24-10.745 24-24V352h16c13.255 0 24-10.745 24-24V192c0-26.51-21.49-48-48-48z"></path>
+                </svg></p>
+                <p aria-hidden="true"> Non-Sepsis: <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="male" class="svg-inline--fa fa-male fa-w-6 true-negative sample" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512">
+                  <path stroke="none" fill="currentColor" d="M96 0c35.346 0 64 28.654 64 64s-28.654 64-64 64-64-28.654-64-64S60.654 0 96 0m48 144h-11.36c-22.711 10.443-49.59 10.894-73.28 0H48c-26.51 0-48 21.49-48 48v136c0 13.255 10.745 24 24 24h16v136c0 13.255 10.745 24 24 24h64c13.255 0 24-10.745 24-24V352h16c13.255 0 24-10.745 24-24V192c0-26.51-21.49-48-48-48z"></path>
+                </svg></p>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- step 2: classification into having sepsis or not using the thresholds selected -->
+        <section class="step">
+
+          <div class="row">
+
+            <div class="column left">
+              <div class="step-circle">2</div>
+            </div>
+
+            <div class="column middle">
+
+              <div class="slider-holder">
+                <h3>Decision Threshold</h3>
+                <p>Use this slider to update the decision threshold. The higher the decision threshold, the more confident the model must be before you act on its prediction and treat a patient for sepsis.</p>
+                <div><input type="range" min="0" max="100" value="50" step="1" id="threshold-slider" class="slider"></div>
+                <span class="threshold-value">Threshold: 50%</span>
+                <p>Patients are classified into four categories:</p>
+
+                <p>
+                  <span class="truepos"></span> True Positives:
+                  <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="male" class="svg-inline--fa fa-male fa-w-6 true-positive sample" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512">
+                    <path stroke="none" fill="currentColor" d="M96 0c35.346 0 64 28.654 64 64s-28.654 64-64 64-64-28.654-64-64S60.654 0 96 0m48 144h-11.36c-22.711 10.443-49.59 10.894-73.28 0H48c-26.51 0-48 21.49-48 48v136c0 13.255 10.745 24 24 24h16v136c0 13.255 10.745 24 24 24h64c13.255 0 24-10.745 24-24V352h16c13.255 0 24-10.745 24-24V192c0-26.51-21.49-48-48-48z"></path>
+                  </svg>
+                </p>
+                <p>
+                  <span class="falseneg"></span> False Negatives:
+                  <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="male" class="svg-inline--fa fa-male fa-w-6 false-negative sample" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512">
+                    <path stroke="black" stroke-width="40" fill="currentColor" d="M96 0c35.346 0 64 28.654 64 64s-28.654 64-64 64-64-28.654-64-64S60.654 0 96 0m48 144h-11.36c-22.711 10.443-49.59 10.894-73.28 0H48c-26.51 0-48 21.49-48 48v136c0 13.255 10.745 24 24 24h16v136c0 13.255 10.745 24 24 24h64c13.255 0 24-10.745 24-24V352h16c13.255 0 24-10.745 24-24V192c0-26.51-21.49-48-48-48z"></path>
+                  </svg>
+                </p>
+                <p>
+                  <span class="trueneg"></span> True Negatives:
+                  <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="male" class="svg-inline--fa fa-male fa-w-6 true-negative sample" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512">
+                    <path stroke="none" fill="currentColor" d="M96 0c35.346 0 64 28.654 64 64s-28.654 64-64 64-64-28.654-64-64S60.654 0 96 0m48 144h-11.36c-22.711 10.443-49.59 10.894-73.28 0H48c-26.51 0-48 21.49-48 48v136c0 13.255 10.745 24 24 24h16v136c0 13.255 10.745 24 24 24h64c13.255 0 24-10.745 24-24V352h16c13.255 0 24-10.745 24-24V192c0-26.51-21.49-48-48-48z"></path>
+                  </svg>
+                </p>
+                <p>
+                  <span class="falsepos"></span> False Positives:
+                  <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="male" class="svg-inline--fa fa-male fa-w-6 false-positive sample" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512">
+                    <path stroke="black" stroke-width="40" fill="currentColor" d="M96 0c35.346 0 64 28.654 64 64s-28.654 64-64 64-64-28.654-64-64S60.654 0 96 0m48 144h-11.36c-22.711 10.443-49.59 10.894-73.28 0H48c-26.51 0-48 21.49-48 48v136c0 13.255 10.745 24 24 24h16v136c0 13.255 10.745 24 24 24h64c13.255 0 24-10.745 24-24V352h16c13.255 0 24-10.745 24-24V192c0-26.51-21.49-48-48-48z"></path>
+                  </svg>
+                </p>
+
+                <p><strong>Scroll down</strong> to check the model accuracy.</p>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- step 3: compute the test accuracy -->
+        <section class="step">
+          <div class="row">
+
+            <div class="column left">
+              <div class="step-circle">3</div>
+            </div>
+
+            <div class="column middle">
+              <div class="slider-holder">
+                <h3>Model Accuracy</h3>
+                <br>
+                <p>Total Population: 500</p>
+                <p><span class="totalpos"></span> people were diagnosed with sepsis, but <span class="falsepos"></span> of them do not have it. <span class="totalneg"></span> people were diagnosed as healthy, but <span class="falseneg"></span> of
+                  them actually have sepsis.</p>
+
+                <p aria-hidden="true"><span class="falsepos"></span> false positives<br />
+                  <span class="falseneg"></span> false negatives</p>
+                <div aria-live="polite" class="sr"><span class="falsetextsr"></span></div>
+
+                <p><img src="images/Accuracy_equals.png" alt="Accuracy equals" style="width: 70%"/></p>
+                <p><img src="images/True_over_Total.png" alt="True results divided by Total population" style="width: 100%"/></p>
+                <p><b><span id="accuracy"></span><span class="sr"> accuracy</span></b></p>
+
+                <p><strong>Scroll up</strong> if you want to try a different threshold.</p>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+
+
+      </div> <!-- sections div -->
+
+      <div role="region" id='vis'></div>
+
+    </div>
+
+  </div>
+
+
+
+
+</body>
+
+</HTML>

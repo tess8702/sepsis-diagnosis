@@ -1,0 +1,29 @@
+#sections {
+  position: relative;
+  display: inline-block;
+  width: 250px;
+  top: 10px;
+  z-index: 90;
+}
+
+.step {
+  margin-bottom: 60px;
+}
+
+#vis {
+  display: inline-block;
+  position: fixed;
+  top: 120px;
+  z-index: 1;
+  margin-left: 0;
+  height: 500px;
+  width: 450px;
+}
+
+.step:last-child {
+  margin-bottom:calc(100vh - 100px);
+}
+
+
+
+
